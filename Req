@@ -1,0 +1,11 @@
+SELECT DISTINCT dep13.*
+FROM registry.object_42_ gis	--Реестр документов ГИСОГД
+
+--Связываем реестр ГИСОГД с 13 разделом (Дела о ЗУ)
+LEFT JOIN registry.xref_5417_ xr ON gis.id = xr.from_id  LEFT JOIN registry.object_286_ dep13 ON xr.to_id = dep13.id
+
+--Связываем с 2А 'Классификатор сведений, документов, материалов, размещаемых в ГИСОГД' со строкой 'Тип документа'
+LEFT JOIN registry.object_171_ doc_type ON doc_type.id = gis.attr_671_
+
+--Берем только тип 'Разрешение на строительство'
+WHERE doc_type.attr_173_ = 'Разрешение на строительство'
