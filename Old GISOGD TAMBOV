@@ -1,0 +1,337 @@
+SELECT 
+ doc3.vse3, 
+ doc3_2.nedeli3
+ ,
+ doc1.vse1, 
+ doc1_2.nedeli1
+ ,
+ doc2.vse2, 
+ doc2_2.nedeli2
+ ,
+ doc4.vse4, 
+ doc4_2.nedeli4
+ ,
+ doc5.vse5, 
+ doc5_2.nedeli5
+ ,
+ doc6.vse6, 
+ doc6_2.nedeli6
+ ,
+ doc7.vse7, 
+ doc7_2.nedeli7
+ ,
+ doc8.vse8, 
+ doc8_2.nedeli8
+ ,
+ doc9.vse9, 
+ doc9_2.nedeli9
+ ,
+ doc10.vse10, 
+ doc10_2.nedeli10
+ ,
+ doc11.vse11, 
+ doc11_2.nedeli11
+ ,
+ doc12.vse12, 
+ doc12_2.nedeli12
+ ,
+ doc13.vse13,
+ doc13_2.nedeli13
+ ,
+ doc14.vse14, 
+ doc14_2.nedeli14
+ ,
+ doc15.vse15, 
+ doc15_2.nedeli15
+ ,
+ doc16.vse16, 
+ doc16_2.nedeli16
+ 
+ FROM 
+(SELECT
+count(*) AS vse3
+FROM registry.object_42_ doc
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 4
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14 
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc3
+,
+(SELECT
+count(*) AS nedeli3
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 4
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc3_2
+,
+(SELECT
+count(*) AS vse1
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 2
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc1
+,
+(SELECT
+count(*) AS nedeli1
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 2
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc1_2
+,
+(SELECT
+count(*) AS vse2
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 3
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14 
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc2
+,
+(SELECT
+count(*) AS nedeli2
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 3
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now()) 
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc2_2
+, 
+(SELECT
+count(*) AS vse4
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 5
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc4
+, 
+(SELECT
+count(*) AS nedeli4
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 5
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc4_2
+, 
+(SELECT
+count(*) AS vse5
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 6
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc5
+, 
+(SELECT
+count(*) AS nedeli5
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 6
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc5_2
+, 
+(SELECT
+count(*) AS vse6
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 7
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc6
+, 
+(SELECT
+count(*) AS nedeli6
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 7
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc6_2
+, 
+(SELECT
+count(*) AS vse7
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 8
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc7
+, 
+(SELECT
+count(*) AS nedeli7
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 8
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc7_2
+, 
+(SELECT
+count(*) AS vse8
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 9
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc8
+, 
+(SELECT
+count(*) AS nedeli8
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 9
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc8_2
+, 
+(SELECT
+count(*) AS vse9
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 10
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc9
+, 
+(SELECT
+count(*) AS nedeli9
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 10
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc9_2
+, 
+(SELECT
+count(*) AS vse10
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 11
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc10
+, 
+(SELECT
+count(*) AS nedeli10
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 11
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc10_2
+, 
+(SELECT
+count(*) AS vse11
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 12
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc11
+, 
+(SELECT
+count(*) AS nedeli11
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 12
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc11_2
+, 
+(SELECT
+count(*) AS vse12
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 13
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc12
+, 
+(SELECT
+count(*) AS nedeli12
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 13
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc12_2
+, 
+(SELECT
+count(*) AS vse13
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 14
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc13
+, 
+(SELECT
+count(*) AS nedeli13
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 14
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc13_2
+,
+(SELECT
+count(*) AS vse14
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 15
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc14
+,
+(SELECT
+count(*) AS nedeli14
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 15
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc14_2
+, 
+(SELECT
+count(*) AS vse15
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 16
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc15
+, 
+(SELECT
+count(*) AS nedeli15
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 16
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc15_2
+, 
+(SELECT
+count(*) AS vse16
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 17
+AND doc.create_date BETWEEN date('01.03.2022') AND date(now()) - 14
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc16
+, 
+(SELECT
+count(*) AS nedeli16
+FROM registry.object_42_ doc 
+LEFT JOIN registry.xref_3356_ xr ON xr.from_id = doc.id LEFT JOIN registry.object_38_ mun ON mun.id = xr.to_id
+WHERE doc.is_deleted = FALSE
+AND doc.attr_43_ = 17
+AND doc.create_date BETWEEN date(now()) - 14 AND date(now())
+AND mun.attr_40_ = 'Волжский муниципальный район') AS doc16_2
