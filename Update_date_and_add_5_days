@@ -1,0 +1,9 @@
+UPDATE registry.object_11785_ SET attr_11797_ =
+(SELECT
+             o.attr_11797_ + 5
+
+             FROM registry.object_11785_ o
+
+             WHERE o.is_deleted = FALSE AND
+                   id = 19 --Прописать (SELECT ) для поиска нужного id
+);
