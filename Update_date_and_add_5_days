@@ -1,3 +1,5 @@
+--В object прописать нужный объект и изменить атрибут на нужный
+
 UPDATE registry.object_11785_ SET attr_11797_ =
 (SELECT
              o.attr_11797_ + 5
