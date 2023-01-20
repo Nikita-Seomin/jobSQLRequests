@@ -1,0 +1,3 @@
+--ЗУ Без владельца
+select count(*) from registry.object_3767_
+where attr_3913_ is null
