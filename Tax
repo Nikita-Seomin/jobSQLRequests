@@ -31,3 +31,20 @@ where
 		land.attr_3884_  SIMILAR to '%(д|Д)(а|А)(ч|Ч)(н|Н)%' or 
 		land.attr_3883_  SIMILAR to '%(д|Д)(а|А)(ч|Ч)(н|Н)%'
 	)
+
+
+---------------------------------------------------------------ОКС без прав--------------------------------------------------------------------------------------
+--------------------------------------------------------Площадные--------------------------------------------------------------------------------------------------
+select count(*) as areal_without_owner
+from registry.object_3407_ areal
+left join 
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+	) as rights_areal
+	on areal.attr_3445_ = rights_areal.attr_4430_
+where
+		areal.is_deleted = 'f'    
+	and
+		rights_areal.object_id is null
