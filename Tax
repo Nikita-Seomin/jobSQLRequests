@@ -1,3 +1,22 @@
 --ЗУ Без владельца
 select count(*) from registry.object_3767_
 where attr_3913_ is null
+ 
+ 
+ --ЗУ для дачного строительства без владельца
+select count(*) 
+from registry.object_3767_ as land
+left join 
+	(
+		select * 
+		from registry.object_4420_
+		where is_deleted = 'f'
+	) rights 
+	on land.attr_3774_ = rights.attr_4430_
+where 
+	land.is_deleted = 'f'    and 
+	rights.object_id is null and
+	(
+		land.attr_3884_  SIMILAR to '%(д|Д)(а|А)(ч|Ч)(н|Н)%' or 
+		land.attr_3883_  SIMILAR to '%(д|Д)(а|А)(ч|Ч)(н|Н)%'
+	)
