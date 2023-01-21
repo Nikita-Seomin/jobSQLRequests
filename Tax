@@ -66,7 +66,7 @@ where
 ---------------------------------------------------------------------Площадные гаражи-----------------------------------------------------------------------
 select count(*) as areal_garage_without_owner
 from registry.object_3407_ areal_garage
-left join 
+left join
 	(
 		select *
 		from registry.object_4420_
@@ -74,12 +74,29 @@ left join
 	) as rights_areal_garage
 	on areal_garage.attr_3445_ = rights_areal_garage.attr_4430_
 where
-		areal_garage.is_deleted = 'f'    
+		areal_garage.is_deleted = 'f' 
 	and
 		rights_areal_garage.object_id is NULL
 	AND 
 		(
-		land.attr_3884_  SIMILAR to '%(г|Г)(а|А)(р|Р)(а|А)(ж|Ж)%'
-		or
-		land.attr_3883_  SIMILAR to '%(г|Г)(а|А)(р|Р)(а|А)(ж|Ж)%'
+		land.attr_3465_  SIMILAR to '%(г|Г)(а|А)(р|Р)(а|А)(ж|Ж)%'
+		)
+		
+---------------------------------------------------------------------Недостроенные гаражи-----------------------------------------------------------------------
+select count(*) as constuctions_without_owner
+from registry.object_3669_ constuctions
+left join 
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+	) as rights_constuctions
+	on constuctions.attr_3682_ = rights_constuctions.attr_4430_
+where
+		constuctions.is_deleted = 'f'    
+	and	
+		rights_constuctions.object_id is NULL
+	AND 
+		(
+			land.attr_3693_  SIMILAR to '%(г|Г)(а|А)(р|Р)(а|А)(ж|Ж)%'
 		)
