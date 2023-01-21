@@ -35,19 +35,19 @@ where
 
 ---------------------------------------------------------------ОКС без прав--------------------------------------------------------------------------------------
 --------------------------------------------------------Площадные--------------------------------------------------------------------------------------------------
-select count(*) as areal_without_owner
-from registry.object_3407_ areal
+select count(*) as finished_objects_without_owner
+from registry.object_3407_ finished_objects
 left join 
 	(
 		select *
 		from registry.object_4420_
 		where is_deleted = 'f'
-	) as rights_areal
-	on areal.attr_3445_ = rights_areal.attr_4430_
+	) as rights_finished_objects
+	on finished_objects.attr_3445_ = rights_finished_objects.attr_4430_
 where
-		areal.is_deleted = 'f'    
+		finished_objects.is_deleted = 'f'    
 	and
-		rights_areal.object_id is null
+		rights_finished_objects.object_id is null
 
 ------------------------------------------Конструкции------------------------------------------------------------------------------------------------------------------
 select count(*) as areal_without_owner
