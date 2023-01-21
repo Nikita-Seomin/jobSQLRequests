@@ -48,3 +48,18 @@ where
 		areal.is_deleted = 'f'    
 	and
 		rights_areal.object_id is null
+
+------------------------------------------Конструкции------------------------------------------------------------------------------------------------------------------
+select count(*) as areal_without_owner
+from registry.object_3669_ constuctions
+left join 
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+	) as rights_constuctions
+	on constuctions.attr_3682_ = rights_constuctions.attr_4430_
+where
+		constuctions.is_deleted = 'f'    
+	and	
+		rights_constuctions.object_id is null
