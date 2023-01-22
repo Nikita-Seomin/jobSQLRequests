@@ -34,7 +34,7 @@ where
 
 
 ---------------------------------------------------------------ОКС без прав--------------------------------------------------------------------------------------
---------------------------------------------------------Площадные--------------------------------------------------------------------------------------------------
+--------------------------------------------------------Достроенные--------------------------------------------------------------------------------------------------
 select count(*) as finished_objects_without_owner
 from registry.object_3407_ finished_objects
 left join 
@@ -50,7 +50,7 @@ where
 		rights_finished_objects.object_id is null
 
 ------------------------------------------Конструкции------------------------------------------------------------------------------------------------------------------
-select count(*) as areal_without_owner
+select count(*) as constuctions_without_owner
 from registry.object_3669_ constuctions
 left join 
 	(
@@ -60,10 +60,10 @@ left join
 	) as rights_constuctions
 	on constuctions.attr_3682_ = rights_constuctions.attr_4430_
 where
-		constuctions.is_deleted = 'f'    
-	and	
+		constuctions.is_deleted = 'f'
+	and
 		rights_constuctions.object_id is null
----------------------------------------------------------------------Площадные гаражи-----------------------------------------------------------------------
+---------------------------------------------------------------------Достроенные гаражи-----------------------------------------------------------------------
 select count(*) as areal_garage_without_owner
 from registry.object_3407_ areal_garage
 left join
@@ -79,24 +79,6 @@ where
 		rights_areal_garage.object_id is NULL
 	AND 
 		(
-		land.attr_3465_  SIMILAR to '%(г|Г)(а|А)(р|Р)(а|А)(ж|Ж)%'
+		areal_garage.attr_3465_  SIMILAR to '%(г|Г)(а|А)(р|Р)(а|А)(ж|Ж)%'
 		)
-		
----------------------------------------------------------------------Недостроенные гаражи-----------------------------------------------------------------------
-select count(*) as constuctions_without_owner
-from registry.object_3669_ constuctions
-left join 
-	(
-		select *
-		from registry.object_4420_
-		where is_deleted = 'f'
-	) as rights_constuctions
-	on constuctions.attr_3682_ = rights_constuctions.attr_4430_
-where
-		constuctions.is_deleted = 'f'    
-	and	
-		rights_constuctions.object_id is NULL
-	AND 
-		(
-			land.attr_3693_  SIMILAR to '%(г|Г)(а|А)(р|Р)(а|А)(ж|Ж)%'
-		)
+	
