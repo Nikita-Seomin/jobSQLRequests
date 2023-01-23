@@ -81,4 +81,20 @@ where
 		(
 		areal_garage.attr_3465_  SIMILAR to '%(г|Г)(а|А)(р|Р)(а|А)(ж|Ж)%'
 		)
-	
+----------------------------------------------------------------------Гаражи в составе кооператива---------------------------------------------------------------
+--Привязка помещений к гаражам
+
+select * from registry.object_3407_ builds
+left join registry.object_3453_ rooms_dictionary on rooms_dictionary.attr_3574_ = builds.id
+left join registry.object_4303_ rooms            on rooms.attr_4309_            = rooms_dictionary.attr_3454_
+where 
+	rooms.attr_4325_ SIMILAR to '%(г|Г)(а|А)(р|Р)(а|А)(ж|Ж)%'
+	and 
+	rooms.is_deleted = 'f'
+	and 
+	builds.is_deleted = 'f'
+	and 
+	rooms_dictionary.is_deleted = 'f'
+	and 
+	rooms.id is not null
+limit 1000
