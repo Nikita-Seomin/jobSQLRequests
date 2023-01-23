@@ -98,3 +98,26 @@ where
 	and 
 	rooms.id is not null
 limit 1000
+
+------------------------------------------------------Жилые квартиры с правами, у которых 1 собственник-------------------------------------------------------------
+select count(*) 
+from registry.object_4303_ rooms
+left join
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+	) as rooms_rights
+	on rooms.attr_4309_ = rooms_rights.attr_4430_
+where 
+	rooms.is_deleted = 'f'
+	and
+	rooms.attr_4327_ similar to '(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
+	and
+	rooms.attr_4325_ similar to '(К|к)(В|в)(А|а)(Р|р)(Т|т)(И|и)(Р|р)(А|а)'
+	and
+	rooms_rights.id is not null
+	and 
+	rooms_rights.attr_4736_ = 'Собственность'
+
+	
