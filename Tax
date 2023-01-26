@@ -216,3 +216,24 @@ where
 	apart.attr_4317_ = 'Помещение'
 	and
 	apart.attr_4327_ similar to '%(Н|н)(е|Е)(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
+	
+------------------------------------------------------------Квартиры с правами ---------------------------------------------------------------------
+select count(distinct apart.id)
+from registry.object_4303_ apart
+left join
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+		
+	) as apart_rights
+	on apart.attr_4309_ = apart_rights.attr_4430_
+where
+	apart.is_deleted = 'f'
+	and
+	apart.attr_4327_ similar to '(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
+	and
+	apart.attr_4325_ similar to '(К|к)(В|в)(А|а)(Р|р)(Т|т)(И|и)(Р|р)(А|а)'
+	and
+	apart_rights.id is not null
+	
