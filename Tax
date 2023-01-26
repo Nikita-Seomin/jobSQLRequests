@@ -113,31 +113,6 @@ limit 1000
 
 
 
-------------------------------------------------------Жилые квартиры с правами, у которых 1 собственник-------------------------------------------------------------
-select count(*) 
-from registry.object_4303_ rooms
-left join
-	(
-		select *
-		from registry.object_4420_
-		where is_deleted = 'f'
-	) as rooms_rights
-	on rooms.attr_4309_ = rooms_rights.attr_4430_
-where 
-	rooms.is_deleted = 'f'
-	and
-	rooms.attr_4327_ similar to '(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
-	and
-	rooms.attr_4325_ similar to '(К|к)(В|в)(А|а)(Р|р)(Т|т)(И|и)(Р|р)(А|а)'
-	and
-	rooms_rights.id is not null
-	and 
-	rooms_rights.attr_4736_ = 'Собственность'
-	
-	
-
---P.S. Есть 7000 записей квартир в собственности, но у которых несколько владельцев
-
 
 ---------------------------------------------- помещения МКД---------------------------------------------------------------------------------------------------	
 select count(*)
@@ -233,7 +208,57 @@ where
 	and
 	apart.attr_4327_ similar to '(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
 	and
-	apart.attr_4325_ similar to '(К|к)(В|в)(А|а)(Р|р)(Т|т)(И|и)(Р|р)(А|а)'
+	apart.attr_4325_ similar to '%(К|к)(В|в)(А|а)(Р|р)(Т|т)%'
 	and
 	apart_rights.id is not null
 	
+----------------------------------------------------Квартиры с собственностью-------------------------------------------------------------------
+select count(distinct apart.id)
+from registry.object_4303_ apart
+left join
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+		
+	) as apart_rights
+	on apart.attr_4309_ = apart_rights.attr_4430_
+where
+	apart.is_deleted = 'f'
+	and
+	apart.attr_4327_ similar to '(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
+	and
+	apart.attr_4325_ similar to '%(К|к)(В|в)(А|а)(Р|р)(Т|т)%'
+	and
+	apart_rights.attr_4736_ = 'Собственность'
+	and
+	apart_rights.id is not null
+	
+--P.S. Есть 7000 записей квартир в собственности, но у которых несколько владельцев, для этого distinct
+	
+---------------------------------------------Комнаты в собственности--------------------------------------------------------------------------
+
+select count(distinct apart.id)
+from registry.object_4303_ apart
+left join
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+		
+	) as apart_rights
+	on apart.attr_4309_ = apart_rights.attr_4430_
+where
+	apart.is_deleted = 'f'
+	and
+	apart.attr_4327_ similar to '(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
+	and
+	apart.attr_4325_ similar to '%(К|к)(О|о)(М|м)(Н|н)(А|а)(т|Т)(А|а|Ы|ы)%'
+	and
+	apart_rights.attr_4736_ = 'Собственность'
+	and
+	apart_rights.id is not null
+	
+--P.S. 400 комнат  в собственности с несколькими владельцами
+
+
