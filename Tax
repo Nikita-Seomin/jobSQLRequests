@@ -305,3 +305,25 @@ where
 	rights.attr_4736_ = 'Собственность'
 
 --P.S. 700 записей отсекаются distinct, есть неуникальные права, хотя не относятся к "Общей долевой собственности". Также есть гаражи среди помещений.
+
+
+--------------------------------------------------------Комнаты без прав-----------------------------------------------------------------------------
+select count(*)
+from registry.object_4303_ rooms
+left join
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+		
+	) as rights
+	on rooms.attr_4309_ = rights.attr_4430_
+where
+	rooms.is_deleted = 'f'
+	and
+	rooms.attr_4327_ similar to '(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
+	and
+	rooms.attr_4325_ similar to '%(К|к)(О|о)(М|м)(Н|н)(А|а)(т|Т)(А|а|Ы|ы)%'
+	and
+	rights.id is null
+	
