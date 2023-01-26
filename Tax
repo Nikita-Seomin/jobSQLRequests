@@ -33,6 +33,7 @@ where
 	)
 
 
+
 ---------------------------------------------------------------ОКС без прав--------------------------------------------------------------------------------------
 --------------------------------------------------------Достроенные--------------------------------------------------------------------------------------------------
 select count(*) as finished_objects_without_owner
@@ -177,3 +178,41 @@ where
 	apart.attr_4327_ similar to '%(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
 	and 
 	apart.attr_4325_ similar to '%(К|к)(О|о)(М|м)(Н|н)(А|а)(Т|т)(А|а|Ы|ы)%'
+	
+-----------------------------------------Нежилые с правами----------------------------------------------------------------------------------------------
+select count(*)
+from registry.object_4303_ apart
+left join
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+	) as apart_rights
+	on apart.attr_4309_ = apart_rights.attr_4430_
+where
+	apart.is_deleted = 'f'
+	and
+	apart_rights.id is not null
+	and
+	apart.attr_4317_ = 'Помещение'
+	and
+	apart.attr_4327_ similar to '%(Н|н)(е|Е)(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
+
+-------------------------------------------Нежилые без прав---------------------------------------------------------------------------------------
+select count(*)
+from registry.object_4303_ apart
+left join
+	(
+		select *
+		from registry.object_4420_
+		where is_deleted = 'f'
+	) as apart_rights
+	on apart.attr_4309_ = apart_rights.attr_4430_
+where
+	apart.is_deleted = 'f'
+	and
+	apart_rights.id is null
+	and
+	apart.attr_4317_ = 'Помещение'
+	and
+	apart.attr_4327_ similar to '%(Н|н)(е|Е)(Ж|ж)(И|и)(л|Л)(о|О)(е|Е)%'
